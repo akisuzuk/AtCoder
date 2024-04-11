@@ -1,3 +1,7 @@
+
+//---A---
+
+/*
 #include <stdio.h>
 
 int	main(void)
@@ -17,3 +21,15 @@ int	main(void)
 	}
 	return (0);
 }
+*/
+
+//---B---
+
+#include <stdio.h>
+
+
+//---C---
+
+//---D---
+
+//---E---
