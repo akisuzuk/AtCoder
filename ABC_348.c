@@ -27,6 +27,12 @@ int	main(void)
 
 #include <stdio.h>
 
+int main(void)
+{
+
+
+	return (0);
+}
 
 //---C---
 
