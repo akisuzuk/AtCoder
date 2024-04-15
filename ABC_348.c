@@ -25,11 +25,11 @@ int	main(void)
 
 //---B---
 
-typedef struct s_Coordinate
+typedef struct s_coordinate
 {
 	int	x;
 	int	y;
-}	t_Coordinate;
+}	t_coordinate;
 
 #include <stdio.h>
 
@@ -37,18 +37,28 @@ int	main(void)
 {
 	int				max_dist;
 	int				n;
-	t_Coordinate	*coordinates;
-*
-	scanf("%d", n);
+	int				i;
+	int				j;
+	t_coordinate	*coordinates;
 
-	coordinates = (t_Coordinate *)malloc(n * sizeof(t_Coordinate));
+	scanf("%d", n);
+	coordinates = (t_coordinate *)malloc(n * sizeof(t_coordinate));
 	if (coordinates == NULL)
 		return (1);
-
-	while()
+	i = 0;
+	while (i < n)
 	{
-		77777777
+		scanf("%d %d", &coordinates[i].x, &coordinates[i].y);
+		i++;
 	}
+	while (i < n)
+	{
+		while (j < i)
+		{
+			7777
+		}
+	}
+
 
 	return (0);
 }
