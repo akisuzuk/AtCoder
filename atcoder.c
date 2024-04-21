@@ -2,22 +2,30 @@
 // 基本入力まとめ
 //============================
 
+//------------------------
 // 1行1数字(整数)
+//------------------------
 //int a;           // ※小数にする場合int→floatに変更
 //scanf("%d", &a); // ※小数にする場合%d→%fに変更
 
+//------------------------
 // 1行1文字
+//------------------------
 //char c;
 //scanf("%c", &c);
 
+//------------------------
 // 1行n数字(★配列使用)
+//------------------------
 //int n, a[100];
 //scanf("%d", &n);
 //for(int i = 0; i < n; i++){
 //    scanf("%d", &a[i]);
 //}
 
+//------------------------
 // 1行n文字(文字列)
+//------------------------
 //char S[101];
 //scanf("%s", s);   //文字列の場合、&は不要
 
@@ -38,85 +46,81 @@ int main() {
     }
     // 確認のため、最期の入力を表示してみる
     printf("Last number => %d \n", buf[mx-1]);
-    
+
     return 0;
 }
 */
 
+//------------------------
 // 1行n数字を配列に格納
+//------------------------
+//一行n文字をintとかdoubleとかflatとかにする
 // int a[10];
 
 
+//------------------------
+// n行n数字を配列に格納
+//------------------------
 
-//---TEMPLATE---TEMPLATE---TEMPLATE---TEMPLATE---TEMPLATE---TEMPLATE---
-
-//==========================================================
-// [contest name]    ABC190
-// [question]        A
-// [title]           Very Very Primitive Game
-// [language]        C
-// [result]          AC/TLE/WA
-// [comment]         xxxx
-// [learned]         xxxx               
-//==========================================================
-
-/*
-#include<stdio.h>
-#include<stdlib.h> // exit用, abs用
-#include<math.h> //sqrt, pow用
-
-int main() {
-
-
-    return 0;
-}
-*/
-
-//---TEMPLATE---TEMPLATE---TEMPLATE---TEMPLATE---TEMPLATE---TEMPLATE---
-
-
-
-//==========================================================
-// [contest name]    ABC183
-// [question]        B
-// [title]           Billiards
-// [language]        C
-// [result]          AC/TLE/WA
-// [comment]         xxxx
-// [learned]         xxxx               
-//==========================================================
-
-// S-XとS-Gのtanが等しいので方程式といてXを出す
-// SとGの大小関係でXの式変わるかと思って場合分け組んだけど変わらなくて草
-// あっだめだ答えが全部整数になっちまう
+// 座標に格納する例。数字少なければ構造体も活用しましょう
+//typedef struct s_coordinate
+//{
+//	int	x;
+//	int	y;
+//}	t_coordinate;
+//
+//int	main(void)
+//{
+//	int				max_dist;
+//	int				dist;
+//	int				n;
+//	int				i;
+//	int				j;
+//	int				ans;
+//	t_coordinate	*coordinates;
+//
+//	scanf("%d", &n);
+//	coordinates = (t_coordinate *)malloc(n * sizeof(t_coordinate));
+//	if (coordinates == NULL)
+//		return (1);
+//	i = 0;
+//	while (i < n)
+//	{
+//		scanf("%d %d", &coordinates[i].x, &coordinates[i].y);
+//		i++;
+//	}
+//    //free忘れない
+//    free(coordinates);
+//}
 
 
-#include<stdio.h>
-
-int main() {
-    //int sx, sy, gx, gy;
-    //float sx, sy, gx, gy, ans;
-    //scanf("%f %f %f %f", &sx, &sy, &gx, &gy);
-    double sx, sy, gx, gy, ans;
-    scanf("%lf %lf %lf %lf", &sx, &sy, &gx, &gy);
 
 
-    ans = (sx*gy+sy*gx)/(sy+gy);
- 
-    printf("%lf", ans);
-
-    return 0;
-}
 
 
-// いっこだけミスった??
-// in : -1000000 1000000 999999 1000000
-// out : -0.5000000000
-// いや、合ってるんだが...
-// floatだと桁数が足りないか？
-// →doubleにしたら直ったわ。競プロは特に型の縛りないしintとdoubleでいいか
-// 意外と整数以外の取り扱いについてしっかりやったことなくて時間かかっちまった
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//↓↓↓使えるかわからんけど構造体使わん場合のメモ
+//（いつか同じような問題でAC出したらそっちに更新してこれは消す）
 
 //==========================================================
 // [contest name]    ABC183
@@ -125,7 +129,7 @@ int main() {
 // [language]        C
 // [result]          AC/TLE/WA
 // [comment]         xxxx
-// [learned]         xxxx               
+// [learned]         xxxx
 //==========================================================
 
 // 問題だけ確認して寝る
@@ -135,13 +139,9 @@ int main() {
 
 int main() {
     int N, K;
-    scanf("%d, %d", &N, &K);
-    // あれっn行n文字ってどうやって入力すりゃいいんだ
-    // 上のテンプレみたらmallocっぽい！わかる！分かるぞォォォォォ！
-    // つってもいざやると2重配列の作り方が分からん...
-    // ※眠いので後日確認、
-    // ここmallocとポインタを理解しないと書けないのでpiscineの意味はあったな笑
     int *city;
+
+    scanf("%d, %d", &N, &K);
     city = malloc(N*sizeof(*city));
     for(int i=0; i<N; i++) {
         int a[8];                   // nは高々8だから8でいいか
@@ -156,11 +156,8 @@ int main() {
             printf()
      }
 
-
-
-
     ans = (sx*gy+sy*gx)/(sy+gy);
- 
+
     printf("%lf", ans);
 
     // mallocしたからfreeも必要か
