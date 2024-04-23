@@ -105,6 +105,8 @@ int	main(void)
 // [comment]		xxxx
 // [learned]		xxxx
 //==========================================================
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef struct s_bean
 {
@@ -112,10 +114,10 @@ typedef struct s_bean
 	int	c;
 }	t_bean;
 
-int	main()
+int	main(void)
 {
-	int	n;
-	int	i;
+	int		n;
+	int		i;
 	t_bean	*beans;
 
 	scanf("%d", &n);
@@ -128,6 +130,7 @@ int	main()
 		scanf("%d %d", &beans[i].a, &beans[i].c);
 		i++;
 	}
+	qsort
 
 	free(beans);
 	return (0);
