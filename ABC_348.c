@@ -114,11 +114,37 @@ typedef struct s_bean
 	int	c;
 }	t_bean;
 
+// 要素を比較して順番が入れ替わる時は正の値、入れ替わらない時は負の値を返す
+// 同じ値の場合は0を返す
+int	func(const void *a, const void *b)
+{
+	const t_bean	*A;
+	const t_bean	*B;
+
+	// void*型のポインタを元の型にキャスト
+	A = a;
+	B = b;
+	if (A->c > B->c)
+		return (1);
+	if (A->c == B->c)
+	{
+		if (A->a > B->a)
+			return (1);
+		if (A->a == B->a)
+			return (0);
+		// 順番変わらないなら負の値を返す
+		return (-1);
+	}
+	return (-1);
+}
+
 int	main(void)
 {
 	int		n;
 	int		i;
+	int		j;
 	t_bean	*beans;
+	int		min;
 
 	scanf("%d", &n);
 	beans = (t_bean *)malloc(n * sizeof(t_bean));
@@ -130,8 +156,24 @@ int	main(void)
 		scanf("%d %d", &beans[i].a, &beans[i].c);
 		i++;
 	}
-	qsort
+	// qsortはソートする要素の型を指定できるため、
+	// その型が何であるか事前にわからないことがあります。
+	// そのため、qsortはすべての要素をvoid*型として扱います。
+	// 特定の型で答えを出したい場合は最後に必要に応じてキャストする
+	qsort(beans, n, sizeof(t_bean), func);
 
+	i = 0;
+	j = 0;
+	min = 0;
+	while(i < n)
+	{
+		j = i;
+		if (beans[i].a > min)
+			min = beans[i].a;
+		while (i < n && beans[i].c == beans[j].c)
+			i++;
+	}
+	printf("%d\n", min);
 	free(beans);
 	return (0);
 }
