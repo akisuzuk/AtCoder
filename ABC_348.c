@@ -105,132 +105,111 @@ int	main(void)
 // [comment]		xxxx
 // [learned]		xxxx
 //==========================================================
-#include <stdio.h>
-#include <stdlib.h>
 
-typedef struct s_bean
-{
-	int	a;
-	int	c;
-}	t_bean;
-
-// 要素を比較して順番が入れ替わる時は正の値、入れ替わらない時は負の値を返す
-// 同じ値の場合は0を返す
-int	func(const void *a, const void *b)
-{
-	const t_bean	*A;
-	const t_bean	*B;
-
-	// void*型のポインタを元の型にキャスト
-	A = a;
-	B = b;
-	if (A->c > B->c)
-		return (1);
-	if (A->c == B->c)
-	{
-		if (A->a > B->a)
-			return (1);
-		if (A->a == B->a)
-			return (0);
-		// 順番変わらないなら負の値を返す
-		return (-1);
-	}
-	return (-1);
-}
-
-int	main(void)
-{
-	int		n;
-	int		i;
-	int		j;
-	t_bean	*beans;
-	int		min;
-
-	scanf("%d", &n);
-	beans = (t_bean *)malloc(n * sizeof(t_bean));
-	if (beans == NULL)
-		return (1);
-	i = 0;
-	while (i < n)
-	{
-		scanf("%d %d", &beans[i].a, &beans[i].c);
-		i++;
-	}
-	// qsortはソートする要素の型を指定できるため、
-	// その型が何であるか事前にわからないことがあります。
-	// そのため、qsortはすべての要素をvoid*型として扱います。
-	// 特定の型で答えを出したい場合は最後に必要に応じてキャストする
-	qsort(beans, n, sizeof(t_bean), func);
-
-	i = 0;
-	j = 0;
-	min = 0;
-	while(i < n)
-	{
-		j = i;
-		if (beans[i].a > min)
-			min = beans[i].a;
-		while (i < n && beans[i].c == beans[j].c)
-			i++;
-	}
-	printf("%d\n", min);
-	free(beans);
-	return (0);
-}
-
-//このコードいい感じっす.qsortの理解は必須
-
-//#include<stdio.h>
-//#include<stdlib.h>
+//#include <stdio.h>
+//#include <stdlib.h>
 //
-//typedef struct{
-//    int a,c;
-//}data;
+//typedef struct s_bean
+//{
+//	int	a;
+//	int	c;
+//}	t_bean;
 //
-//int func(const void *a,const void *b){
-//    const data *A=a,*B=b;
-//    if(A->c > B->c)return 1;
-//    if(A->c==B->c){
-//        if(A->a > B->a)return 1;
-//        if(A->a==B->a)return 0;
-//        return -1;
-//    }
-//    return -1;
+//// 要素を比較して順番が入れ替わる時は正の値、入れ替わらない時は負の値を返す
+//// 同じ値の場合は0を返す
+//int	func(const void *a, const void *b)
+//{
+//	const t_bean	*A;
+//	const t_bean	*B;
+//
+//	// void*型のポインタを元の型にキャスト
+//	A = a;
+//	B = b;
+//	if (A->c > B->c)
+//		return (1);
+//	if (A->c == B->c)
+//	{
+//		if (A->a > B->a)
+//			return (1);
+//		if (A->a == B->a)
+//			return (0);
+//		// 順番変わらないなら負の値を返す
+//		return (-1);
+//	}
+//	return (-1);
 //}
 //
-//int main(){
+//int	main(void)
+//{
+//	int		n;
+//	int		i;
+//	int		j;
+//	t_bean	*beans;
+//	int		min;
 //
-//    int n;
-//    int a[200002],c[200002];
-//    scanf("%d",&n);
-//    data x[200002];
-//    for(int i=0;i<n;i++){
-//        scanf("%d%d",&a[i],&c[i]);
-//        x[i].a=a[i]; x[i].c=c[i];
-//    }
-//    qsort(x,n,sizeof(data),func);
+//	scanf("%d", &n);
+//	beans = (t_bean *)malloc(n * sizeof(t_bean));
+//	if (beans == NULL)
+//		return (1);
+//	i = 0;
+//	while (i < n)
+//	{
+//		scanf("%d %d", &beans[i].a, &beans[i].c);
+//		i++;
+//	}
+//	// qsortはソートする要素の型を指定できるため、
+//	// その型が何であるか事前にわからないことがあります。
+//	// そのため、qsortはすべての要素をvoid*型として扱います。
+//	// 特定の型で答えを出したい場合は最後に必要に応じてキャストする
+//	qsort(beans, n, sizeof(t_bean), func);
 //
-//    int min=0;
-//    for(int i=0;i<n;){
-//        int j=i;
-//        if(x[i].a > min)min=x[i].a;
-//        while(i<n && x[i].c==x[j].c)i++;
-//    }
-//    printf("%d",min);
-//    return 0;
+//	i = 0;
+//	j = 0;
+//	min = 0;
+//	while(i < n)
+//	{
+//		j = i;
+//		if (beans[i].a > min)
+//			min = beans[i].a;
+//		while (i < n && beans[i].c == beans[j].c)
+//			i++;
+//	}
+//	printf("%d\n", min);
+//	free(beans);
+//	return (0);
 //}
-
 
 
 //==========================================================
 // [contest name]	ABC348
 // [question]		D
-// [title]			XXXX
+// [title]			Medicines on Grid
 // [language]		C
 // [result]			AC/TLE/WA
 // [comment]		xxxx
 // [learned]		xxxx
 //==========================================================
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct s_map
+{
+	int	h;
+	int	w;
+	int	e;
+}	t_map;
+
+
+int	main(void)
+{
+	int h_size;
+	int w_size;
+
+	scanf("%d %d", &h_size, &w_size);
+
+	return (0);
+}
 
 
 
