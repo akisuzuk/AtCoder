@@ -190,6 +190,8 @@ int	main(void)
 // [learned]		xxxx
 //==========================================================
 
+//https://atcoder.jp/contests/abc348/submissions/52142593
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -200,18 +202,81 @@ typedef struct s_map
 	int	e;
 }	t_map;
 
-
 int	main(void)
 {
-	int h_size;
-	int w_size;
+	int		h_size;
+	int		w_size;
+	char	**map;
+	int		i;
+	int		j;
+	int		pos_x;
+	int		pos_y;
+	int		n;
+	int		r;
+	int		c;
+	int		e_temp;
+	// これもmapと同様にmallocするとなると流石に合理的でないので、
+	// 今後は十分なサイズの配列で対応
+	int		e[202][203];
+	int		v[202][203];
 
 	scanf("%d %d", &h_size, &w_size);
+	// 全周に壁を設定するので、縦横それぞれ+2する
+	map = (char **)malloc((h_size + 2) * sizeof(char *));
+	if (map == NULL)
+		return (1);
+	for (i = 0; i < h_size; i++)
+	{
+		map[i] = (char *)malloc((w_size + 2) * sizeof(char));
+		if (map[i] == NULL)
+			return (1);
+	}
+	// w方向の壁
+	for (i = 0; i <= w_size + 1; i++)
+	{
+		map[0][i] = '#';
+		map[h_size + 1][i] = '#';
+	}
+	// h方向の壁とマップの入力
+	pos_x = 0;
+	pos_y = 0;
+	for (i = 1; i <= h_size; i++)
+	{
+		map[i][0] = '#';
+		// 入力値はスペースないので[i][1]を先頭として文字列を入力
+		scanf("%s", &map[i][1]);
+		map[i][w_size + 1] = '#';
+		if (pos_x == 0)
+		{
+			for (j = 1; j <= w_size; j++)
+			{
+				// スタート地点の座標を取得
+				if (map[i][j] == 'S')
+				{
+					pos_x = j;
+					pos_y = i;
+				}
+			}
+		}
+	}
+	scanf("%d", &n);
+	for (i = 0; i < n; i++)
+	{
+		scanf("%d %d %d", &r, &c, &e_temp);
+		e[r][c] = e_temp;
+	}
+	push(pos_x, pos_y, 0);
+	7777
 
+
+
+
+	// メモリ解放
+	for (i = 0; i < h_size; i++)
+		free(map[i]);
+	free(map);
 	return (0);
 }
-
-
 
 
 //==========================================================
