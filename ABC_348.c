@@ -195,12 +195,31 @@ int	main(void)
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct s_map
+//typedef struct s_map
+//{
+//	int	h;
+//	int	w;
+//	int	e;
+//}	t_map;
+
+typedef struct s_queue
 {
-	int	h;
-	int	w;
+	int	x;
+	int	y;
 	int	e;
-}	t_map;
+}	t_queue;
+
+void push(int v[202][203], t_queue q, int x, int y, int e)
+{
+	v[y][x] = e;
+	q[]
+
+}
+
+int search()
+{
+
+}
 
 int	main(void)
 {
@@ -219,6 +238,7 @@ int	main(void)
 	// 今後は十分なサイズの配列で対応
 	int		e[202][203];
 	int		v[202][203];
+	t_queue	queue[202 * 203];
 
 	scanf("%d %d", &h_size, &w_size);
 	// 全周に壁を設定するので、縦横それぞれ+2する
@@ -265,11 +285,13 @@ int	main(void)
 		scanf("%d %d %d", &r, &c, &e_temp);
 		e[r][c] = e_temp;
 	}
-	push(pos_x, pos_y, 0);
-	7777
 
+	push(v, queue, pos_x, pos_y, 0);
 
-
+	if (serach() == 1)
+		printf("YES\n");
+	else
+		printf("NO\n");
 
 	// メモリ解放
 	for (i = 0; i < h_size; i++)
