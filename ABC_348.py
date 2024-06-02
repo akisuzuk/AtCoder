@@ -81,3 +81,35 @@
 #if __name__ == "__main__":
 #	main()
 #
+
+#==========================================================
+# [contest name]	ABC348
+# [question]		E
+# [title]
+# [language]		Python
+# [result]			AC/TLE/WA
+# [comment]			SHAKYO
+# [learned]			xxxx
+#==========================================================
+
+imoprt sys
+# 再帰関数の再起回数の上限を引き上げる
+# 競プロあるあるらしい。ちなmacだとデフォルトで1000だった(test_something.py参照)
+sys.setrecursionlimit(10**9)
+
+def main():
+	N = int(input())
+	G = [[] for _ in range(N)]
+	for _ in range(N - 1):
+		a, b = map(int, input().split())
+		# インデックスの0開始に合わせるため-=1
+		a -= 1
+		b -= 1
+		G[a].append(b)
+		G[b].append(a)
+
+	#---In Progress---
+
+
+if __name__ == "__main__":
+	main()
