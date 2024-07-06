@@ -92,7 +92,10 @@
 # [learned]			xxxx
 #==========================================================
 
-imoprt sys
+# 全方位木DPくさい？
+# https://atcoder.jp/contests/abc222/editorial/2749
+
+import sys
 # 再帰関数の再起回数の上限を引き上げる
 # 競プロあるあるらしい。ちなmacだとデフォルトで1000だった(test_something.py参照)
 sys.setrecursionlimit(10**9)
@@ -108,8 +111,59 @@ def main():
 		G[a].append(b)
 		G[b].append(a)
 
-	#---In Progress---
+	C = list(map(int, input.split()))
+	dp = [0] * N
+	dist = [-1] * N
+
+	# 関数の場所、どうよ。。。
+	# mainの上に書きたいのに中途半端に変数取り入れてるから分離できない。
+	def dfs(v, p, d):
+		dist[v] = d
+		res = 0
+		for nv in G[v]:
+			if nv == p:
+				continue
+			res += dfs(nv, v, d + 1)
+		dp[v] = res + C[v]
+
+		return dp[v]
+
+	dfs(0, -1, 0)
+	sumC = sum(C)
+
+	c = 0
+	for v in range(N):
+		c += dist[v] * C[v]
+
+	v = 0
+	p = -1
+	# あ、なんか上でやってた探索を、Cの重みを考慮してもう一度やってるようだ。
+	while True:
+		bv = -1
+		current = c
+		for nv in G[v]:
+			if nv == p:
+				continue
+			newc = c - dp[nv] + (sumC - dp[nv])
+			if newc > current:
+				bv = nv
+				current = newc
+		if bv != -1:
+			v, p = bv, v
+			c = current
+		else:
+			break
+
+	print(current)
+
+	#...うん、わからん。すいませんいつかこのレベルに来れるようにします。
+
 
 
 if __name__ == "__main__":
 	main()
+
+
+
+
+
